@@ -4,7 +4,7 @@
   "description": "JavaScript Strings Code-along for Learn.co",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 5000 -R mocha-multi --reporter-options spec=-,json=.results.json"
+    "test": "mocha --timeout 5000 --reporter-options spec=-,json=.results.json"
   },
   "repository": {
     "type": "git",
@@ -24,16 +24,22 @@
   },
   "homepage": "https://github.com/learn-co-curriculum/js-basics-strings-code-along#readme",
   "devDependencies": {
-    "babel-core": "6.26.3",
-    "babel-preset-env": "1.7.0",
+    "@babel/core": "^7.26.9",
+    "@babel/preset-env": "^7.26.9",
     "chai": "4.1.2",
-    "jsdom": "9.2.1",
-    "mocha": "5.2.0",
-    "mocha-jsdom": "~1.1.0",
-    "mocha-multi": "1.0.1",
-    "chai-spies-next": "^0.9.3"
+    "chai-spies-next": "^0.9.3",
+    "jsdom": "^26.0.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^11.1.0",
+    "mocha-jsdom": "^1.1.0"
   },
   "dependencies": {
+    "core-js": "^3.41.0",
     "sinon": "^7.3.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }

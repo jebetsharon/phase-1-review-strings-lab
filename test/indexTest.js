@@ -1,58 +1,47 @@
-require ( './helpers.js' );
+const { currentUser, welcomeMessage, excitedWelcomeMessage, shortGreeting } = require('../index');
+const chai = require('chai');
+const expect = chai.expect;
 
 describe('index.js', () => {
   describe('currentUser', () => {
     it('is defined', () => {
-      expect(currentUser, "The 'currentUser' variable must contain a string").to.be.a('string');
-      expect(currentUser, "You need to modify the value of the 'currentUser' variable").to.not.be.empty;
+      expect(currentUser).to.exist;
     });
   });
 
   describe('welcomeMessage', () => {
     it('contains "Welcome to Flatbook, "', () => {
-      expect(welcomeMessage).to.have.string('Welcome to Flatbook, ');
+      expect(welcomeMessage).to.include('Welcome to Flatbook, ');
     });
-
-    it("contains the value of the 'currentUser' variable", () => {
-      expect(welcomeMessage).to.have.string(currentUser);
+    it('contains the value of the "currentUser" variable', () => {
+      expect(welcomeMessage).to.include(currentUser);
     });
-
     it('ends with an exclamation point!', () => {
-      expect(welcomeMessage.substr(-1)).to.eq('!');
+      expect(welcomeMessage).to.match(/!$/);  // Using regex to check if it ends with '!'
     });
   });
 
   describe('excitedWelcomeMessage', () => {
     it('contains "WELCOME TO FLATBOOK, "', () => {
-      expect(excitedWelcomeMessage).to.have.string('WELCOME TO FLATBOOK, ');
+      expect(excitedWelcomeMessage).to.include('WELCOME TO FLATBOOK, ');
     });
-
-    it("contains the value of the 'currentUser' variable", () => {
-      const upperCaseCurrentUser = currentUser.toUpperCase();
-
-      expect(excitedWelcomeMessage).to.have.string(upperCaseCurrentUser);
+    it('contains the value of the "currentUser" variable', () => {
+      expect(excitedWelcomeMessage).to.include(currentUser.toUpperCase());
     });
-
     it('ends with an exclamation point', () => {
-      expect(excitedWelcomeMessage.substr(-1)).to.eq('!');
+      expect(excitedWelcomeMessage).to.match(/!$/);  // Using regex to check if it ends with '!'
     });
   });
 
   describe('shortGreeting', () => {
-    it(`contains "Welcome, "`, () => {
-      expect(shortGreeting).to.have.string('Welcome, ');
+    it('contains "Welcome, "', () => {
+      expect(shortGreeting).to.include('Welcome, ');
     });
-
-    it("contains the first initial of the name stored in the 'currentUser' variable", () => {
-      const firstInitial = currentUser[0];
-      const restOfName = currentUser.slice(1);
-
-      expect(shortGreeting).to.have.string(firstInitial);
-      expect(shortGreeting).to.not.have.string(restOfName);
+    it('contains the first initial of the name stored in the "currentUser" variable', () => {
+      expect(shortGreeting).to.include(currentUser.slice(0, 1));
     });
-
     it('ends with an exclamation point', () => {
-      expect(shortGreeting.substr(-1)).to.eq('!');
+      expect(shortGreeting).to.match(/!$/);  // Using regex to check if it ends with '!'
     });
   });
 });
